@@ -1,0 +1,31 @@
+name: 3gmfhy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 0/2 * * *'
+  watch:
+    types: [started]
+env:
+  TZ: Asia/Shanghai
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+         
+      - name: 'Install requirements'
+        run: pip install -r ./requirements.txt 
+        
+      - name: '运行【3gmfhy】' 
+        run: python3 main.py 
+        env:
+            USERNAME: ${{ secrets.USERNAME }}
+            PASSWORD: ${{ secrets.PASSWORD }}
