@@ -13,6 +13,7 @@ class Garden:
         self.potId = []
         self.JM = AesSample()
         self.EXP = True
+        self.TotalFlower = 0
 
     def time_stamp(self) -> int:
         return int(time.time() * 1000)
@@ -121,6 +122,7 @@ class Garden:
         extractFlower = self.post_temple(extractFlower_url, self.JM.encode(str(data)))
         if extractFlower['code'] == '200':
             print(f"偷取{name}的{flower_name} 成功")
+            self.TotalFlower += 1
         elif extractFlower['msg'] == '请稍后再试':
             self.extractFlower(fid, fpotid, name, flower_name)
         else:
@@ -149,4 +151,5 @@ if __name__ == '__main__':
     HY.getMyFriends()
     HY.getFriendsPot()
     # HY.add_seed(buy_flower_id)
+    print(f"共偷取{HY.TotalFlower}朵花！")
     print(f"共耗时{(time.time()-start):.2f}秒")
