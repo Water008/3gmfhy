@@ -19,6 +19,7 @@ class Garden:
         return int(time.time() * 1000)
 
     def post_temple(self, url, data):
+        time.sleep(0.01)
         info = requests.post(base_url + url, data=data, headers=headers)
         return info.json()
 
