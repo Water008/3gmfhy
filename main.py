@@ -21,7 +21,7 @@ class Garden:
 
     @retry(tries=3, delay=2)
     def post_temple(self, url, data):
-        time.sleep(0.01)
+        time.sleep(0.02)
         info = requests.post(base_url + url, data=data, headers=headers)
         return info.json()
 
