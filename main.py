@@ -19,7 +19,7 @@ class Garden:
     def time_stamp(self) -> int:
         return int(time.time() * 1000)
 
-    @retry(tries=3, delay=2)
+    @retry(delay=2)
     def post_temple(self, url, data):
         time.sleep(0.02)
         info = requests.post(base_url + url, data=data, headers=headers)
